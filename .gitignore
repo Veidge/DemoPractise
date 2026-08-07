@@ -21,6 +21,9 @@
 *.a
 *.la
 *.lo
+bin/
+obj/
+.vs/
 
 # Shared objects (inc. Windows DLLs)
 *.dll
