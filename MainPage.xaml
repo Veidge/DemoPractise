@@ -1,0 +1,102 @@
+﻿<Page x:Class="DemoTraining.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DemoTraining"
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="900"
+      Title="MainPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <DataGrid AutoGenerateColumns="False" x:Name="goods">
+                <DataGrid.Columns>
+
+                    <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
+                    <DataGridTextColumn Header="Название" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Категория" Binding="{Binding Category}"/>
+                    <DataGridTextColumn Header="Количество" Binding="{Binding Quantity}"/>
+                    <DataGridTextColumn Header="Цена" Binding="{Binding Price}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Поиск:" Grid.Column="0" VerticalAlignment="Center" Margin="5 0"/>
+            <TextBox x:Name="searchBox" Grid.Column="1" Height="25" VerticalAlignment="Center"/>
+
+            <TextBlock Text="Категории:" Grid.Column="2" VerticalAlignment="Center" Margin="5 0"/>
+            <ComboBox x:Name="categoryBox" Grid.Column="3" VerticalAlignment="Center"/>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Название" Grid.Column="0" Margin="5 0 0 35"/>
+                <TextBlock Text="Категория" Grid.Column="1" Margin="5 0 0 35"/>
+                <TextBlock Text="Количество" Grid.Column="2" Margin="5 0 0 35"/>
+                <TextBlock Text="Цена" Grid.Column="3" Margin="5 0 0 35"/>
+
+                <TextBox x:Name="goodsName" Grid.Column="0" Height="25" Margin="0 20 0 0" VerticalAlignment="Center"/>
+                <TextBox x:Name="goodsCategory" Grid.Column="1" Height="25" Margin="0 20 0 0" VerticalAlignment="Center"/>
+                <TextBox x:Name="goodsQuantity" Grid.Column="2" Height="25" Margin="0 20 0 0" VerticalAlignment="Center"/>
+                <TextBox x:Name="goodsPrice" Grid.Column="3" Height="25" Margin="0 20 0 0" VerticalAlignment="Center"/>
+
+            </Grid>
+            
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Button Content="Добавить" Height="25" Width="120" Grid.Column="0"/>
+                <Button Content="Редактировать" Height="25" Width="120" Grid.Column="1"/>
+                <Button Content="Удалить" Height="25" Width="120" Grid.Column="2"/>
+
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <StatusBar>
+                <StatusBarItem>
+                    <TextBlock x:Name="totalQuantity" VerticalAlignment="Center"/>
+                </StatusBarItem>
+                <StatusBarItem>
+                    <TextBlock x:Name="totalCategory" VerticalAlignment="Center"/>
+                </StatusBarItem>
+                <StatusBarItem>
+                    <TextBlock x:Name="totalPrice" VerticalAlignment="Center"/>
+                </StatusBarItem>
+            </StatusBar>
+        </Grid>
+        
+    </Grid>
+</Page>

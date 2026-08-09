@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -12,15 +14,18 @@ using System.Windows.Shapes;
 namespace DemoTraining
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Логика взаимодействия для Page1.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class RegisterPage : Page
     {
-        public MainWindow()
+        public RegisterPage()
         {
             InitializeComponent();
+        }
 
-            MainFrame.Navigate(new LoginPage());
+        private void registrationToMain(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new MainPage());
         }
     }
 }

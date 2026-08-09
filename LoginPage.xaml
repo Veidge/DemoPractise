@@ -1,0 +1,61 @@
+﻿<Page x:Class="DemoTraining.LoginPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DemoTraining"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="LoginPage">
+
+    <Grid ShowGridLines="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"  FontSize="15">Форма авторизации</TextBlock>
+
+            <Grid Grid.Column="1" Grid.Row="1">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">Логин:</TextBlock>
+                <TextBox x:Name="username" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Margin="10 0 0 0"></TextBox>
+                <TextBlock Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">Пароль:</TextBlock>
+                <TextBox x:Name="password" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Margin="10 0 0 0"></TextBox>
+                <Button Grid.Column="1" Grid.Row="2" Content="Войти" Width="90" Height="30" Cursor="Hand" Margin="0 10 0 0" Click="loginToMain"/>
+
+            </Grid>
+
+            <TextBlock Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 10 0 0">Нет аккаунта?</TextBlock>
+            <Button Grid.Column="1" Grid.Row="3" Height="30" HorizontalAlignment="Center" Content="Зарегистрироваться" VerticalAlignment="Center" Click="toRegistration" Cursor="Hand" Padding="5"/>
+        </Grid>
+
+    </Grid>
+</Page>
