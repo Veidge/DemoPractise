@@ -17,14 +17,14 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
-            <DataGrid AutoGenerateColumns="False" x:Name="goods">
+            <DataGrid AutoGenerateColumns="False" x:Name="goods" SelectionChanged="SelectProduct">
                 <DataGrid.Columns>
 
                     <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
                     <DataGridTextColumn Header="Название" Binding="{Binding Name}"/>
                     <DataGridTextColumn Header="Категория" Binding="{Binding Category}"/>
                     <DataGridTextColumn Header="Количество" Binding="{Binding Quantity}"/>
-                    <DataGridTextColumn Header="Цена" Binding="{Binding Price}"/>
+                    <DataGridTextColumn Header="Цена" Binding="{Binding Price, StringFormat={}{0:0.00}}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
@@ -77,9 +77,9 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <Button Content="Добавить" Height="25" Width="120" Grid.Column="0"/>
+                <Button Content="Добавить" Height="25" Width="120" Grid.Column="0" Click="InsertProduct"/>
                 <Button Content="Редактировать" Height="25" Width="120" Grid.Column="1"/>
-                <Button Content="Удалить" Height="25" Width="120" Grid.Column="2"/>
+                <Button Content="Удалить" Height="25" Width="120" Grid.Column="2" Click="DeleteProduct"/>
 
             </Grid>
         </Grid>

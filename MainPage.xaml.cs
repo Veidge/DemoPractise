@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -18,9 +19,120 @@ namespace DemoTraining
     /// </summary>
     public partial class MainPage : Page
     {
+        ApplicationContext db = new ApplicationContext();
         public MainPage()
         {
             InitializeComponent();
+
+            Loaded += MainPage_Loaded;
         }
+
+        // при загрузке страницы подгружать всю БД
+        private void MainPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            db.Database.EnsureCreated();
+            LoadGoods();
+        }
+
+        private void LoadGoods()
+        {
+            goods.ItemsSource = db.Products.ToList();
+        }
+
+        private void InsertProduct(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(goodsName.Text) || string.IsNullOrWhiteSpace(goodsCategory.Text) ||
+                string.IsNullOrWhiteSpace(goodsQuantity.Text) || string.IsNullOrWhiteSpace(goodsPrice.Text))
+            {
+                MessageBox.Show("Не все поля заполнены.", 
+                    "Предупреждение",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+                return;
+            }
+
+            if (!int.TryParse(goodsQuantity.Text, out int quantity))
+            {
+                MessageBox.Show("Поле количества должно содержать число.",
+                    "Предупреждение",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+                return;
+            }
+
+            if (!decimal.TryParse(goodsPrice.Text.Replace('.', ','), out decimal price))
+            {
+                MessageBox.Show("Поле цены должно содержать число.",
+                    "Предупреждение",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+                return;
+            }
+
+            //decimal.TryParse(goodsPrice.Text.Replace('.', ','), out decimal price);
+            //int.TryParse(goodsQuantity.Text, out int quantity);
+
+            if (price < 0 || quantity < 0)
+            {
+                MessageBox.Show("Числовые значения не могут быть отрицательными.",
+                    "Предупреждение",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+                return;
+            }
+
+            Product newProduct = new Product
+            {
+                Name = goodsName.Text,
+                Category = goodsCategory.Text,
+                Price = price,
+                Quantity = quantity
+            };
+
+            db.Products.Add(newProduct);
+            db.SaveChanges();
+            LoadGoods();
+        }
+
+        private void SelectProduct(object sender, SelectionChangedEventArgs e)
+        {
+            Product selectedProduct = goods.SelectedItem as Product;
+
+            if (selectedProduct != null)
+            {
+                goodsName.Text = selectedProduct.Name;
+                goodsCategory.Text = selectedProduct.Category;
+                goodsQuantity.Text = selectedProduct.Quantity.ToString();
+                goodsPrice.Text = selectedProduct.Price.ToString("0.0");
+
+            }
+        }
+
+        private void DeleteProduct(object sender, EventArgs e)
+        {
+            Product selectedProduct = goods.SelectedItem as Product;
+
+            if (selectedProduct != null)
+            {
+                MessageBoxResult result = MessageBox.Show(
+                    "Вы уверены, что хотите удалить запись?",
+                    "Подтверждение",
+                    MessageBoxButton.YesNo);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    Product product = db.Products.Find(selectedProduct.Id);
+
+                    if (product != null)
+                    {
+                        db.Products.Remove(product);
+                        db.SaveChanges();
+                        LoadGoods();
+                    }
+                }
+            }
+        }
+
+
     }
 }
