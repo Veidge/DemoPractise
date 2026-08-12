@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -32,7 +33,8 @@ namespace DemoTraining
         {
             db.Database.EnsureCreated();
             LoadGoods();
-            CategoryList();
+            LoadCategoryList();
+            LoadStatistics();
         }
 
         private void LoadGoods()
@@ -93,7 +95,8 @@ namespace DemoTraining
             db.Products.Add(newProduct);
             db.SaveChanges();
             LoadGoods();
-            CategoryList();
+            LoadCategoryList();
+            LoadStatistics();
         }
 
         private void SelectProduct(object sender, SelectionChangedEventArgs e)
@@ -130,7 +133,8 @@ namespace DemoTraining
                         db.Products.Remove(product);
                         db.SaveChanges();
                         LoadGoods();
-                        CategoryList();
+                        LoadCategoryList();
+                        LoadStatistics();
                     }
                 }
             }
@@ -155,7 +159,8 @@ namespace DemoTraining
                 }
             }
             LoadGoods();
-            CategoryList();
+            LoadCategoryList();
+            LoadStatistics();
         }
 
         private void SearchingProductName(object sender, TextChangedEventArgs e)
@@ -175,7 +180,7 @@ namespace DemoTraining
             }
         }
 
-        private void CategoryList()
+        private void LoadCategoryList()
         {
             categoryBox.Items.Clear();
             categoryBox.Items.Add("Все категории");
@@ -185,6 +190,17 @@ namespace DemoTraining
                 categoryBox.Items.Add(category);
             }
             categoryBox.SelectedIndex = 0;
+        }
+
+        private void LoadStatistics()
+        {
+            int goodsCount = db.Products.Count();
+            decimal goodsPrice = db.Products.Sum(p => p.Price);
+            int goodsCategoriesCount = db.Products.Select(p => p.Category).Distinct().Count();
+
+            totalCategory.Text = $"Всего категорий: {goodsCategoriesCount}";
+            totalQuantity.Text = $"Товаров на складе: {goodsCount}";
+            totalPrice.Text = $"Общая стоимость: {goodsPrice} рублей";
         }
     }
 }

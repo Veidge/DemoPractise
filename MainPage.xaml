@@ -87,13 +87,13 @@
         <Grid Grid.Row="3">
             <StatusBar>
                 <StatusBarItem>
-                    <TextBlock x:Name="totalQuantity" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="totalQuantity" VerticalAlignment="Center" Margin="5 0"/>
                 </StatusBarItem>
                 <StatusBarItem>
-                    <TextBlock x:Name="totalCategory" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="totalCategory" VerticalAlignment="Center" Margin="5 0"/>
                 </StatusBarItem>
                 <StatusBarItem>
-                    <TextBlock x:Name="totalPrice" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="totalPrice" VerticalAlignment="Center" Margin="5 0"/>
                 </StatusBarItem>
             </StatusBar>
         </Grid>
