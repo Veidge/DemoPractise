@@ -32,6 +32,7 @@ namespace DemoTraining
         {
             db.Database.EnsureCreated();
             LoadGoods();
+            CategoryList();
         }
 
         private void LoadGoods()
@@ -92,6 +93,7 @@ namespace DemoTraining
             db.Products.Add(newProduct);
             db.SaveChanges();
             LoadGoods();
+            CategoryList();
         }
 
         private void SelectProduct(object sender, SelectionChangedEventArgs e)
@@ -128,11 +130,61 @@ namespace DemoTraining
                         db.Products.Remove(product);
                         db.SaveChanges();
                         LoadGoods();
+                        CategoryList();
                     }
                 }
             }
         }
 
+        private void UpdateProduct(object sender, EventArgs e)
+        {
+            Product selectedProduct = goods.SelectedItem as Product;
 
+            if (selectedProduct != null)
+            {
+                Product product = db.Products.Find(selectedProduct.Id);
+
+                if (product != null)
+                {
+                    product.Name = goodsName.Text;
+                    product.Category = goodsCategory.Text;
+                    product.Quantity = int.Parse(goodsQuantity.Text);
+                    product.Price = decimal.Parse(goodsPrice.Text.Replace('.', ','));
+
+                    db.SaveChanges();
+                }
+            }
+            LoadGoods();
+            CategoryList();
+        }
+
+        private void SearchingProductName(object sender, TextChangedEventArgs e)
+        {
+            goods.ItemsSource = db.Products.Where(p => p.Name.ToLower().Contains(searchBox.Text.ToLower())).ToList();
+        }
+
+        private void CategoryFilter(object sender, SelectionChangedEventArgs e)
+        {
+            if (categoryBox.SelectedItem.ToString() == "Все категории")
+            {
+                goods.ItemsSource = db.Products.ToList();
+            }
+            else
+            {
+                goods.ItemsSource = db.Products.Where(p => p.Category == categoryBox.SelectedItem.ToString()).ToList();
+            }
+        }
+
+        private void CategoryList()
+        {
+            categoryBox.Items.Clear();
+            categoryBox.Items.Add("Все категории");
+
+            foreach (string category in db.Products.Select(p => p.Category).Distinct())
+            {
+                categoryBox.Items.Add(category);
+            }
+            categoryBox.SelectedIndex = 0;
+        }
     }
 }
