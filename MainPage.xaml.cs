@@ -200,7 +200,7 @@ namespace DemoTraining
 
             totalCategory.Text = $"Всего категорий: {goodsCategoriesCount}";
             totalQuantity.Text = $"Товаров на складе: {goodsCount}";
-            totalPrice.Text = $"Общая стоимость: {goodsPrice} рублей";
+            totalPrice.Text = $"Общая стоимость (в рублях): {goodsPrice}";
         }
     }
 }

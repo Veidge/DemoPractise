@@ -11,7 +11,7 @@
     <Grid ShowGridLines="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="3*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
@@ -25,6 +25,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="2*"/>
+                <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
 
@@ -46,10 +47,14 @@
                 <TextBlock Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">Логин:</TextBlock>
                 <TextBox x:Name="username" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Margin="10 0"></TextBox>
                 <TextBlock Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">Пароль:</TextBlock>
-                <TextBox x:Name="password" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Margin="10 0"></TextBox>
+                <PasswordBox x:Name="password" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Margin="10 0"></PasswordBox>
             </Grid>
 
-            <Button Grid.Column="1" Grid.Row="2" Content="Зарегистрироваться" Width="120" Height="30" Margin="0 0 0 40" Cursor="Hand" Click="registrationToMain"/>
+            <Button Grid.Column="1" Grid.Row="2" Content="Зарегистрироваться" Width="120" Height="30" Margin="0 0 0 35" Cursor="Hand" Click="registrationToMain"/>
+
+            <TextBlock Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 55 0 0">Есть аккаунт?</TextBlock>
+            <Button Grid.Column="1" Grid.Row="3" Height="30" HorizontalAlignment="Center" Content="Войти" VerticalAlignment="Center" Click="toLogin" Cursor="Hand" Padding="5"/>
+
         </Grid>
 
     </Grid>

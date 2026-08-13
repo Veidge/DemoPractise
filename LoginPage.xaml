@@ -48,7 +48,7 @@
                 <TextBlock Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">Логин:</TextBlock>
                 <TextBox x:Name="username" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Margin="10 0 0 0"></TextBox>
                 <TextBlock Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">Пароль:</TextBlock>
-                <TextBox x:Name="password" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Margin="10 0 0 0"></TextBox>
+                <PasswordBox x:Name="password" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Margin="10 0 0 0"></PasswordBox>
                 <Button Grid.Column="1" Grid.Row="2" Content="Войти" Width="90" Height="30" Cursor="Hand" Margin="0 10 0 0" Click="loginToMain"/>
 
             </Grid>
