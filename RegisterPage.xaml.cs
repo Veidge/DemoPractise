@@ -50,7 +50,7 @@ namespace DemoTraining
             MessageBox.Show($"Пользователь {username.Text.Trim()} зарегистрирован. Переадресация на главную страницу...", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
             Thread.Sleep(2000);
 
-            NavigationService.Navigate(new MainPage());
+            NavigationService.Navigate(new MainPage(username.Text.Trim()));
         }
 
         private void toLogin(object sender, RoutedEventArgs e)

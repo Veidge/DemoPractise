@@ -21,11 +21,12 @@ namespace DemoTraining
     public partial class MainPage : Page
     {
         ApplicationContext db = new ApplicationContext();
-        public MainPage()
+        public MainPage(string currentUsername)
         {
             InitializeComponent();
 
             Loaded += MainPage_Loaded;
+            ShowCurrentAccount(currentUsername);
         }
 
         // при загрузке страницы подгружать всю БД
@@ -201,6 +202,16 @@ namespace DemoTraining
             totalCategory.Text = $"Всего категорий: {goodsCategoriesCount}";
             totalQuantity.Text = $"Товаров на складе: {goodsCount}";
             totalPrice.Text = $"Общая стоимость (в рублях): {goodsPrice}";
+        }
+
+        private void ShowCurrentAccount(string account)
+        {
+            currentAccount.Text = $"{account}";
+        }
+
+        private void ChangeAccount(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new LoginPage());
         }
     }
 }

@@ -43,14 +43,13 @@ namespace DemoTraining
             {
                 if (user.GetUsername() == username.Text.Trim() && user.GetPassword() == password.Password.Trim())
                 {
-                    NavigationService.Navigate(new MainPage());
-                }
-                else
-                {
-                    MessageBox.Show("Пользователь с введёнными данными не найден в системе.", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    NavigationService.Navigate(new MainPage(username.Text.Trim()));
                     return;
                 }
             }
+
+            MessageBox.Show("Пользователь с введёнными данными не найден в системе.", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
         }
     }
 }
